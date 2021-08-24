@@ -8,5 +8,5 @@ vs2019 + net2.0 + c#
 smb2os.exe 192.168.1.100
 
 # link
-Powershell version  
+powershell ver   
 https://github.com/w1u0u1/smb2os/releases/download/v1.0/smb2os.ps1
