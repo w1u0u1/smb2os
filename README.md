@@ -5,5 +5,5 @@ Use smb2 protocol to detect remote computer os version, support win7/server2008-
 vs2019 + net2.0 + c#
 
 # usage
-smb2os.exe 192.168.1.100
+smb2os.exe 192.168.1.100  
 powershell.exe -ep bypass -f smb2os.ps1 192.168.1.100
