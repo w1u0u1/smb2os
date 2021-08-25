@@ -68,16 +68,15 @@ namespace smb2os
 
                     using (NetworkStream ns = tcpClient.GetStream())
                     {
-                        ns.Write(request1, 0, request1.Length);
-
                         byte[] temp = new byte[1024];
 
+                        ns.Write(request1, 0, request1.Length);
                         int read = ns.Read(temp, 0, temp.Length);
+
                         ns.Write(request2, 0, request2.Length);
-
                         read = ns.Read(temp, 0, temp.Length);
-                        ns.Write(request3, 0, request3.Length);
 
+                        ns.Write(request3, 0, request3.Length);
                         read = ns.Read(temp, 0, temp.Length);
 
                         int blob_offset = BitConverter.ToInt16(temp, 72);
@@ -93,14 +92,14 @@ namespace smb2os
                         }
 
                         int target_name_offset = BitConverter.ToInt32(temp, ntlm_provider_offset + 16);
-                        string pc = Encoding.Unicode.GetString(temp, ntlm_provider_offset + target_name_offset, target_name_length);
+                        string name = Encoding.Unicode.GetString(temp, ntlm_provider_offset + target_name_offset, target_name_length);
 
                         int version_offset = ntlm_provider_offset + 48;
                         int major = temp[version_offset++];
                         int minor = temp[version_offset++];
                         int build = BitConverter.ToInt16(temp, version_offset);
 
-                        Console.WriteLine(string.Format("{0}\t{1}\t{2}.{3}.{4}", host, pc, major, minor, build));
+                        Console.WriteLine(string.Format("{0}\t{1}\t{2}.{3}.{4}", host, name, major, minor, build));
                     }
                 }
             }
